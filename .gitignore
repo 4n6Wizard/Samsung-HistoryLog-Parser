@@ -1,0 +1,25 @@
+# Build / packaging artifacts
+build/
+dist/
+*.exe
+*.spec.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Forensic output / real case data — DO NOT COMMIT
+results/
+*.history_log_database
+history_log_database
+CONSOLIDATED_WORKING_COPY.txt
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/

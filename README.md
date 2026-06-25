@@ -7,6 +7,28 @@ activity between the personal profile and the Secure Folder.
 This release is a **standalone Windows 64-bit executable** — no Python
 installation is required.
 
+## Overview
+
+This tool parses the **HistoryLog** SQLite database from a Samsung device's
+**Secure Folder** (`com.samsung.knox.securefolder`, user profile **150**) and
+reconstructs file transfer activity into analyst-friendly **CSV** and **HTML**
+reports.
+
+The Secure Folder is an isolated, encrypted container (Android user 150) on
+Samsung devices. Its HistoryLog records each file moved into or out of the
+container as paired `request`/`result` events. This tool reads that log and, for
+each event, decodes:
+
+- **Direction** — personal profile (user 0) ↔ Secure Folder (user 150),
+  e.g. `[0 -> 150]` (move-in) or `[150 -> 0]` (move-out)
+- **Source app** that initiated the transfer (Gallery, MyFiles, etc.)
+- **Requested vs. moved file counts** (flags partial transfers)
+- **Source and destination paths**
+- **Timestamps and durations**
+
+It then pairs the request/result events and outputs a consolidated forensic
+report in both CSV and HTML.
+
 ## Contents
 
 | File | Description |

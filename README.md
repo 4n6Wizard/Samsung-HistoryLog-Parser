@@ -7,6 +7,12 @@ activity between the personal profile and the Secure Folder.
 This release is a **standalone Windows 64-bit executable** — no Python
 installation is required.
 
+## Download
+
+➡️ **Get the latest build from the [Releases page](https://github.com/4n6Wizard/Samsung-HistoryLog-Parser/releases/latest)** — download `SecureFolderHistoryLogParser-v1.0-win64.zip`.
+
+> Note: the green **"Code → Download ZIP"** button only downloads source files (the README), **not** the program. Use the Releases link above to get the executable.
+
 ## Overview
 
 This tool parses the **HistoryLog** SQLite database from a Samsung device's

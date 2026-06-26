@@ -29,11 +29,16 @@ each event, decodes:
   e.g. `[0 -> 150]` (move-in) or `[150 -> 0]` (move-out)
 - **Source app** that initiated the transfer (Gallery, MyFiles, etc.)
 - **Requested vs. moved file counts** (flags partial transfers)
-- **Source and destination paths**
+- **Source and destination *folder* paths** — the folders involved in the transfer
 - **Timestamps and durations**
 
 It then pairs the request/result events and outputs a consolidated forensic
 report in both CSV and HTML.
+
+> **Important limitation:** The HistoryLog records the **folders** involved and the
+> **number of files** moved — it does **not** store the individual **file names** of
+> the transferred items. Reports therefore show *which folders* were moved into or
+> out of the Secure Folder and *how many* files, but not the specific file names.
 
 ## Contents
 

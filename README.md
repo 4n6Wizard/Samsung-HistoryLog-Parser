@@ -17,7 +17,7 @@ installation is required.
 
 This tool parses the **HistoryLog** SQLite database from a Samsung device's
 **Secure Folder** (`com.samsung.knox.securefolder`, user profile **150**) and
-reconstructs file transfer activity into analyst-friendly **CSV** and **HTML**
+reconstructs folders transfer activity into analyst-friendly **CSV** and **HTML**
 reports.
 
 The Secure Folder is an isolated, encrypted container (Android user 150) on

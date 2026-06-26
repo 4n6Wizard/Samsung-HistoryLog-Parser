@@ -1,7 +1,7 @@
 # Samsung Secure Folder History Log Parser — v1.0
 
 A forensic tool that parses the Samsung Secure Folder **HistoryLog** database and
-produces analyst-friendly CSV and HTML reports of file-transfer (move-in/move-out)
+produces analyst-friendly CSV and HTML reports of folder-transfer (move-in/move-out)
 activity between the personal profile and the Secure Folder.
 
 This release is a **standalone Windows 64-bit executable** — no Python

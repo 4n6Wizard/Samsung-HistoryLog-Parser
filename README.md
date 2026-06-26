@@ -21,7 +21,7 @@ reconstructs folders transfer activity into analyst-friendly **CSV** and **HTML*
 reports.
 
 The Secure Folder is an isolated, encrypted container (Android user 150) on
-Samsung devices. Its HistoryLog records each file moved into or out of the
+Samsung devices. Its HistoryLog records each folder moved into or out of the
 container as paired `request`/`result` events. This tool reads that log and, for
 each event, decodes:
 

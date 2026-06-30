@@ -7,6 +7,14 @@ activity between the personal profile and the Secure Folder.
 This release is a **standalone Windows 64-bit executable** — no Python
 installation is required.
 
+## Scope
+
+> **This parser is a triage tool.** It reads and reports on the existing,
+> live records in the HistoryLog database. It does **not** perform any
+> carving, deleted-record recovery, or other advanced recovery on the
+> database. Findings should be corroborated with full forensic analysis
+> where appropriate.
+
 ## Download
 
 ➡️ **Get the latest build from the [Releases page](https://github.com/4n6Wizard/Samsung-HistoryLog-Parser/releases/latest)** — download `SecureFolderHistoryLogParser-v1.0-win64.zip`.
@@ -71,3 +79,7 @@ See `Sample_Report.csv` and `Sample_Report.html` for examples of the output form
 ## Version
 
 v1.0
+
+## License
+
+Released under the [MIT License](LICENSE).

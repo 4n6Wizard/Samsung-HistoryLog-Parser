@@ -1,0 +1,11 @@
+﻿Event,Event Type,Status,Status Note,Request Time,Result Time,Duration,Source App,Direction,Requested Count,Moved Count,Source Path,Transferred Path,Source Path Note,Warnings
+1,File Transfer,Paired Event,N/A,2025-01-01 08:00:00,2025-01-01 08:00:03,3 sec,Gallery,[0 -> 150],1,1,N/A,N/A,Source Path not available in HistoryLog data.,N/A
+2,File Transfer,Paired Event,N/A,2025-01-01 08:01:00,2025-01-01 08:01:04,4 sec,MyFiles,[0 -> 150],2,N/A,/storage/emulated/0/Download,/storage/emulated/150/Download,Source Path derived from transferred path using source/destination profile IDs.,N/A
+3,File Transfer,Paired Event,N/A,2025-01-01 08:02:00,2025-01-01 08:02:08,8 sec,Gallery,[0 -> 150],3,3,/storage/emulated/0/DCIM/Screenshots,/storage/emulated/150/DCIM/Screenshots,Source Path derived from transferred path using source/destination profile IDs.,N/A
+4,File Transfer,Paired Event,N/A,2025-01-01 08:03:00,2025-01-01 08:03:02,2 sec,MyFiles,[0 -> 150],4,4,/storage/emulated/0/My Folder,/storage/emulated/150/My Folder,Source Path derived from transferred path using source/destination profile IDs.,N/A
+5,File Transfer,Paired Event,N/A,2025-01-01 08:04:00,2025-01-01 08:04:05,5 sec,MyFiles,[0 -> 150],5,5,"/storage/emulated/0/Folder One
+/storage/emulated/0/Folder Two","/storage/emulated/150/Folder One
+/storage/emulated/150/Folder Two",Source Path derived from transferred path using source/destination profile IDs.,N/A
+6,File Transfer,Unpaired Request,"A request record was found, but no matching result record was identified.",2025-01-01 08:05:00,N/A,N/A,Gallery,[20 -> 150],7,N/A,N/A,N/A,Source Path not available in HistoryLog data.,no later matching result record found
+7,File Transfer,Unpaired Result,"A result record was found, but no matching request record was identified.",N/A,2025-01-01 08:06:00,N/A,N/A,[30 -> 150],N/A,8,N/A,N/A,Source Path not available in HistoryLog data.,no prior matching request record found
+8,File Transfer,Paired Event,N/A,,,N/A,MyFiles,[10 -> 150],6,6,N/A,N/A,Source Path not available in HistoryLog data.,N/A

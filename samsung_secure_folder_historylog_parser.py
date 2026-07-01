@@ -42,9 +42,10 @@ SIDECAR_DIALOG_MESSAGE = (
     "This database has related files that may contain additional transfer records.\n\n"
     "Would you like to create a clean working copy before processing?"
 )
-APP_VERSION = "1.0"
+APP_VERSION = "1.1"
 DEFAULT_REPORT_FILENAME = "SecureFolder_HistoryLog_Report.html"
 STATUS_READY = "Ready | Source evidence files are not modified."
+STATUS_NOT_A_DATABASE = "Selected file is not a SQLite database."
 STATUS_DATABASE_SELECTED = "Database selected."
 STATUS_PARSING = "Processing database..."
 STATUS_SIDECARS_DETECTED = "Additional database files found."
@@ -254,6 +255,22 @@ def default_gui_output_dir() -> Path:
     if documents.exists():
         return documents
     return app_base_dir()
+
+
+SQLITE_MAGIC = b"SQLite format 3\x00"
+
+
+def is_sqlite_database(path: Path) -> bool:
+    """Return True if the file begins with the 16-byte SQLite header.
+
+    Detection is content-based, not extension-based, so a genuine HistoryLog
+    file passes regardless of its name and a renamed non-database file fails.
+    """
+    try:
+        with path.open("rb") as handle:
+            return handle.read(16) == SQLITE_MAGIC
+    except OSError:
+        return False
 
 
 def open_readonly_database(path: Path) -> sqlite3.Connection:
@@ -2036,9 +2053,9 @@ def launch_gui() -> int:
         def choose_database(self) -> None:
             path, _ = QFileDialog.getOpenFileName(
                 self,
-                "Select SQLite database",
+                "Select file to analyze",
                 "",
-                "SQLite databases (*.db *.sqlite *.sqlite3);;All files (*.*)",
+                "All files (*.*);;SQLite databases (*.db *.sqlite *.sqlite3)",
             )
             if path:
                 self.handle_database_selection(Path(path))
@@ -2157,6 +2174,18 @@ def launch_gui() -> int:
             if not database_path.exists():
                 QMessageBox.warning(self, "Missing database", "Select an existing database file.")
                 self.clear_database_selection()
+                return
+
+            if not is_sqlite_database(database_path):
+                QMessageBox.warning(
+                    self,
+                    "Not a SQLite Database",
+                    "The selected file is not a valid SQLite database.\n\n"
+                    "Samsung Secure Folder HistoryLog data is stored in a SQLite "
+                    "database. Please select a valid database file.\n\n"
+                    "The selected file was not modified.",
+                )
+                self.clear_database_selection(STATUS_NOT_A_DATABASE)
                 return
 
             if is_consolidated_working_copy(database_path):
@@ -2556,6 +2585,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return launch_gui()
 
     database_path = Path(args.database)
+    if not database_path.exists():
+        print(f"Error: file not found: '{database_path}'", file=sys.stderr)
+        return 2
+    if not is_sqlite_database(database_path):
+        print(
+            f"Error: '{database_path}' is not a valid SQLite database. "
+            "The specified file was not modified.",
+            file=sys.stderr,
+        )
+        return 2
     output_dir = Path(args.output_dir)
     already_consolidated = is_consolidated_working_copy(database_path)
     sidecars = [] if already_consolidated else detect_sidecar_files(database_path)
